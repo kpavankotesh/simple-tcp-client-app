@@ -360,7 +360,7 @@
 				DEVELOPMENT_TEAM = CBJ3WZNH93;
 				INFOPLIST_FILE = "TCP Client/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.akshay.tcpclient.TCP-Client";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tcpclient.TCP-Client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -376,7 +376,7 @@
 				DEVELOPMENT_TEAM = CBJ3WZNH93;
 				INFOPLIST_FILE = "TCP Client/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.akshay.tcpclient.TCP-Client";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tcpclient.TCP-Client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

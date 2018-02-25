@@ -10,6 +10,9 @@ import UIKit
 import SwiftSocket
 
 class ViewController: UIViewController {
+  
+  // MARK: - Constants
+  let maxPortValueLength = 5
 
   // MARK: - IBOutlets
   @IBOutlet weak var addressTextField: UITextField!
@@ -182,6 +185,16 @@ extension ViewController: UITextFieldDelegate {
       connectButtonClicked(connectButton)
     } else if textField == addressTextField {
       portTextField.becomeFirstResponder()
+    }
+    
+    return true
+  }
+  
+  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    if textField == portTextField {
+      if string.count > 0 && (textField.text ?? "").count >= maxPortValueLength {
+        return false
+      }
     }
     
     return true
