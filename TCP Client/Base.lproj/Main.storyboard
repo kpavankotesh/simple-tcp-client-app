@@ -28,26 +28,29 @@
                                 <rect key="frame" x="0.0" y="627" width="375" height="25"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ajg-aX-Wso" userLabel="sendMessageTextField">
-                                        <rect key="frame" x="15" y="-2.5" width="205" height="30"/>
+                                        <rect key="frame" x="15" y="-2.5" width="245" height="30"/>
+                                        <color key="tintColor" red="1" green="0.5568627451" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="send"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fYQ-Wr-XcM" userLabel="sendButton">
-                                        <rect key="frame" x="220" y="-2.5" width="70" height="30"/>
+                                        <rect key="frame" x="260" y="-2.5" width="60" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="70" id="7G3-6P-51P"/>
+                                            <constraint firstAttribute="width" constant="60" id="7G3-6P-51P"/>
                                         </constraints>
+                                        <color key="tintColor" red="1" green="0.5568627451" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Send"/>
                                         <connections>
                                             <action selector="sendButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4W6-aA-p0q"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tQj-qI-3Io" userLabel="clearButton">
-                                        <rect key="frame" x="290" y="-3" width="70" height="30"/>
+                                        <rect key="frame" x="310" y="-3" width="60" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="70" id="wYz-8s-380"/>
+                                            <constraint firstAttribute="width" constant="60" id="wYz-8s-380"/>
                                         </constraints>
+                                        <color key="tintColor" red="1" green="0.55686274509803924" blue="0.47058823529411764" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Clear"/>
                                         <connections>
                                             <action selector="clearButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qHg-Fj-tZw"/>
@@ -57,11 +60,11 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="fYQ-Wr-XcM" firstAttribute="centerY" secondItem="V7F-5o-NUs" secondAttribute="centerY" id="2Dw-XR-9Re"/>
+                                    <constraint firstAttribute="trailing" secondItem="fYQ-Wr-XcM" secondAttribute="trailing" constant="55" id="4B7-1z-EEJ"/>
                                     <constraint firstItem="tQj-qI-3Io" firstAttribute="centerY" secondItem="V7F-5o-NUs" secondAttribute="centerY" id="AR8-DS-QTq"/>
                                     <constraint firstItem="ajg-aX-Wso" firstAttribute="leading" secondItem="V7F-5o-NUs" secondAttribute="leading" constant="15" id="IeT-ek-M97"/>
-                                    <constraint firstItem="tQj-qI-3Io" firstAttribute="leading" secondItem="fYQ-Wr-XcM" secondAttribute="trailing" id="RCB-Uk-tmU"/>
                                     <constraint firstAttribute="height" constant="25" id="huz-rl-ApP"/>
-                                    <constraint firstAttribute="trailing" secondItem="tQj-qI-3Io" secondAttribute="trailing" constant="15" id="nXb-qx-lmy"/>
+                                    <constraint firstAttribute="trailing" secondItem="tQj-qI-3Io" secondAttribute="trailing" constant="5" id="nXb-qx-lmy"/>
                                     <constraint firstItem="ajg-aX-Wso" firstAttribute="centerY" secondItem="V7F-5o-NUs" secondAttribute="centerY" id="yY3-2b-MvM"/>
                                     <constraint firstItem="fYQ-Wr-XcM" firstAttribute="leading" secondItem="ajg-aX-Wso" secondAttribute="trailing" id="ycT-lu-W7a"/>
                                 </constraints>
@@ -76,26 +79,29 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Server Domain or IPV4" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ptn-FD-aSE" userLabel="addressTextField">
-                                        <rect key="frame" x="15" y="30" width="180" height="30"/>
+                                        <rect key="frame" x="15" y="30" width="185" height="30"/>
+                                        <color key="tintColor" red="1" green="0.56470588235294117" blue="0.47843137254901957" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numbersAndPunctuation" returnKeyType="continue"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Port" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ve3-13-w2r" userLabel="portTextField">
-                                        <rect key="frame" x="200" y="30" width="70" height="30"/>
+                                        <rect key="frame" x="205" y="30" width="70" height="30"/>
+                                        <color key="tintColor" red="1" green="0.5568627451" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="70" id="XiH-s9-Mw5"/>
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad" returnKeyType="done"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nsx-cq-wuu" userLabel="connectButton">
-                                        <rect key="frame" x="270" y="30" width="90" height="30"/>
+                                        <rect key="frame" x="275" y="30" width="90" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="90" id="jcA-dn-Ypn"/>
                                             <constraint firstAttribute="height" constant="30" id="lPy-Yo-Yb2"/>
                                         </constraints>
+                                        <color key="tintColor" red="1" green="0.5568627451" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Connect"/>
                                         <connections>
                                             <action selector="connectButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Cbs-cW-wHe"/>
@@ -108,7 +114,7 @@
                                     <constraint firstItem="ve3-13-w2r" firstAttribute="leading" secondItem="Ptn-FD-aSE" secondAttribute="trailing" constant="5" id="F6q-Q1-HwO"/>
                                     <constraint firstAttribute="bottom" secondItem="ve3-13-w2r" secondAttribute="bottom" id="MHW-hL-kPX"/>
                                     <constraint firstItem="Ptn-FD-aSE" firstAttribute="leading" secondItem="hoJ-jU-Hyn" secondAttribute="leading" constant="15" id="MUX-on-37b"/>
-                                    <constraint firstAttribute="trailing" secondItem="nsx-cq-wuu" secondAttribute="trailing" constant="15" id="MmQ-9Y-zfT"/>
+                                    <constraint firstAttribute="trailing" secondItem="nsx-cq-wuu" secondAttribute="trailing" constant="10" id="MmQ-9Y-zfT"/>
                                     <constraint firstItem="3oB-gh-Xtf" firstAttribute="centerX" secondItem="hoJ-jU-Hyn" secondAttribute="centerX" id="PIH-v2-HQD"/>
                                     <constraint firstAttribute="bottom" secondItem="nsx-cq-wuu" secondAttribute="bottom" id="PV2-9v-quT"/>
                                     <constraint firstItem="3oB-gh-Xtf" firstAttribute="top" secondItem="hoJ-jU-Hyn" secondAttribute="top" constant="-1" id="UQ6-nd-S8A"/>
@@ -133,9 +139,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="addressField" destination="Ptn-FD-aSE" id="TqT-dv-Ybe"/>
+                        <outlet property="addressTextField" destination="Ptn-FD-aSE" id="TqT-dv-Ybe"/>
                         <outlet property="connectButton" destination="nsx-cq-wuu" id="Bbi-Mc-Q5P"/>
-                        <outlet property="portField" destination="ve3-13-w2r" id="eUd-z3-8dI"/>
+                        <outlet property="portTextField" destination="ve3-13-w2r" id="eUd-z3-8dI"/>
                         <outlet property="sendButton" destination="fYQ-Wr-XcM" id="J9M-cg-Z79"/>
                         <outlet property="sendMessageTextField" destination="ajg-aX-Wso" id="ZGQ-Kl-Dim"/>
                         <outlet property="sendMessageViewBottomConstraint" destination="qoM-J1-f11" id="zey-UX-5BU"/>

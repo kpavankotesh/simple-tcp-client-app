@@ -12,8 +12,8 @@ import SwiftSocket
 class ViewController: UIViewController {
 
   // MARK: - IBOutlets
-  @IBOutlet weak var addressField: UITextField!
-  @IBOutlet weak var portField: UITextField!
+  @IBOutlet weak var addressTextField: UITextField!
+  @IBOutlet weak var portTextField: UITextField!
   @IBOutlet weak var connectButton: UIButton!
   @IBOutlet weak var statusTextView: UITextView!
   
@@ -30,10 +30,16 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     
     prepopulateValues()
-    addressField.becomeFirstResponder()
-    NotificationCenter.default.addObserver(self, selector: #selector(keyboarWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil);
-    addressField.addTarget(self, action: #selector(textFieldDidChange), for: UIControlEvents.editingChanged)
-    portField.addTarget(self, action: #selector(textFieldDidChange), for: UIControlEvents.editingChanged)
+    addressTextField.becomeFirstResponder()
+
+    NotificationCenter.default.addObserver(forName: NSNotification.Name.UIKeyboardWillHide, object: nil, queue: nil, using: keyboardWillHide(_:))
+    NotificationCenter.default.addObserver(forName: NSNotification.Name.UIKeyboardWillShow, object: nil, queue: nil, using: keyboardWillShow(_:))
+
+    addressTextField.addTarget(self, action: #selector(textFieldDidChange), for: UIControlEvents.editingChanged)
+    portTextField.addTarget(self, action: #selector(textFieldDidChange), for: UIControlEvents.editingChanged)
+
+    setupStatusTextView()
+    setupTextFields()
   }
   
   // MARK: - IBActions
@@ -61,23 +67,39 @@ class ViewController: UIViewController {
   }
   
   // MARK: - Private Methods
-  @objc dynamic private func keyboarWillShow(notification: NSNotification) {
+  private func setupStatusTextView() {
+    statusTextView.layer.borderColor = UIColor.lightGray.cgColor
+    statusTextView.layer.borderWidth = 0.25
+    statusTextView.layer.cornerRadius = 5
+  }
+  
+  private func setupTextFields() {
+    addressTextField.delegate = self
+    portTextField.delegate = self
+    sendMessageTextField.delegate = self
+  }
+  
+  @objc dynamic private func keyboardWillShow(_ notification: Notification) {
     let info = notification.userInfo!
     let keyboardFrame = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
     sendMessageViewBottomConstraint.constant = keyboardFrame.height + 10
+  }
+  
+  @objc dynamic private func keyboardWillHide(_ notification: Notification) {
+    sendMessageViewBottomConstraint.constant = 15
   }
 
   @objc dynamic private func textFieldDidChange(textField: UITextField) {
     connectButton.isEnabled = hasHostValues()
   }
-  
+
   private func hasHostValues() -> Bool {
-    return (addressField.text ?? "").count > 0 && (portField.text ?? "").count > 0
+    return (addressTextField.text ?? "").count > 0 && (portTextField.text ?? "").count > 0
   }
 
   private func connectToClient() {
-    let address = addressField.text ?? getValue(forKey: "address")
-    let port = Int32(portField.text ?? getValue(forKey: "port"))
+    let address = addressTextField.text ?? getValue(forKey: "address")
+    let port = Int32(portTextField.text ?? getValue(forKey: "port"))
 
     client = TCPClient(address: address, port: port!)
     
@@ -132,14 +154,14 @@ class ViewController: UIViewController {
   }
   
   private func prepopulateValues() {
-    addressField.text = getValue(forKey: "address")
-    portField.text = getValue(forKey: "port")
+    addressTextField.text = getValue(forKey: "address")
+    portTextField.text = getValue(forKey: "port")
     connectButton.isEnabled = hasHostValues()
   }
 
   private func saveEnteredValues() {
-    set(addressField.text ?? "", forKey: "address")
-    set(portField.text ?? "", forKey: "port")
+    set(addressTextField.text ?? "", forKey: "address")
+    set(portTextField.text ?? "", forKey: "port")
   }
 
   private func set(_ value: String, forKey: String) {
@@ -148,5 +170,20 @@ class ViewController: UIViewController {
   
   private func getValue(forKey: String) -> String {
     return UserDefaults.standard.string(forKey: forKey) ?? ""
+  }
+}
+
+// MARK: - UITextFieldDelegate
+extension ViewController: UITextFieldDelegate {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    if textField == sendMessageTextField {
+      sendButtonClicked(sendButton)
+    } else if textField == portTextField {
+      connectButtonClicked(connectButton)
+    } else if textField == addressTextField {
+      portTextField.becomeFirstResponder()
+    }
+    
+    return true
   }
 }

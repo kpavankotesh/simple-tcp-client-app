@@ -16,6 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
+    
+    setupAppearance()
+
     return true
   }
 
@@ -41,6 +44,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
   }
 
-
+  private func setupAppearance() {
+    let tintColor = UIColor(red: 255.0 / 255.0, green: 169.0 / 255.0, blue: 133.0 / 255.0, alpha: 1.0)
+    UITextField.appearance().tintColor = tintColor
+    UIButton.appearance().tintColor = tintColor
+  }
 }
 
