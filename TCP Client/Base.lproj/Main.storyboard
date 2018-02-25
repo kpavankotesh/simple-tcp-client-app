@@ -146,11 +146,11 @@
                     <connections>
                         <outlet property="addressTextField" destination="Ptn-FD-aSE" id="TqT-dv-Ybe"/>
                         <outlet property="connectButton" destination="nsx-cq-wuu" id="Bbi-Mc-Q5P"/>
+                        <outlet property="historyTextView" destination="6jG-bZ-AG7" id="Cc9-0w-qT8"/>
                         <outlet property="portTextField" destination="ve3-13-w2r" id="eUd-z3-8dI"/>
                         <outlet property="sendButton" destination="fYQ-Wr-XcM" id="J9M-cg-Z79"/>
                         <outlet property="sendMessageTextField" destination="ajg-aX-Wso" id="ZGQ-Kl-Dim"/>
                         <outlet property="sendMessageViewBottomConstraint" destination="qoM-J1-f11" id="zey-UX-5BU"/>
-                        <outlet property="statusTextView" destination="6jG-bZ-AG7" id="Cc9-0w-qT8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

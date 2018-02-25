@@ -18,7 +18,7 @@ class ViewController: UIViewController {
   @IBOutlet weak var addressTextField: UITextField!
   @IBOutlet weak var portTextField: UITextField!
   @IBOutlet weak var connectButton: UIButton!
-  @IBOutlet weak var statusTextView: UITextView!
+  @IBOutlet weak var historyTextView: UITextView!
   
   @IBOutlet weak var sendMessageTextField: UITextField!
   @IBOutlet weak var sendButton: UIButton!
@@ -57,23 +57,25 @@ class ViewController: UIViewController {
   @IBAction func sendButtonClicked(_ sender: Any) {
     switch client.send(string: sendMessageTextField.text ?? "" ) {
     case .success:
-      statusTextView.insertText("You: \(sendMessageTextField.text ?? "")\n")
+      addToHistory("You: \(sendMessageTextField.text ?? "")")
       sendMessageTextField.text = ""
 
     case .failure(let error):
-      statusTextView.insertText("Failed to send with \(error) \n")
+      addToHistory("Failed to send with \(error)")
     }
   }
 
   @IBAction func clearButtonClicked(_ sender: Any) {
-    statusTextView.text = ""
+    historyTextView.text = ""
   }
   
   // MARK: - Private Methods
   private func setupStatusTextView() {
-    statusTextView.layer.borderColor = UIColor.lightGray.cgColor
-    statusTextView.layer.borderWidth = 0.25
-    statusTextView.layer.cornerRadius = 5
+    historyTextView.layoutManager.allowsNonContiguousLayout = false
+
+    historyTextView.layer.borderColor = UIColor.lightGray.cgColor
+    historyTextView.layer.borderWidth = 0.25
+    historyTextView.layer.cornerRadius = 5
   }
   
   private func setupTextFields() {
@@ -114,8 +116,7 @@ class ViewController: UIViewController {
       receiveMessage()
       
     case .failure(let error):
-      statusTextView.insertText("Failed\n")
-      print(error)
+      addToHistory("Failed: \(error)")
     }
   }
   
@@ -132,11 +133,11 @@ class ViewController: UIViewController {
       self.sendMessageTextField.isEnabled = connectedStatus
       
       if connectedStatus {
-        self.statusTextView.insertText("Connected\n")
+        self.addToHistory("Connected!")
         self.connectButton.setTitle("Disconnect", for: .normal)
         self.sendMessageTextField.becomeFirstResponder()
       } else {
-        self.statusTextView.insertText("Disconnected\n")
+        self.addToHistory("Disconnected!")
         self.connectButton.setTitle("Connect", for: .normal)
       }
     }
@@ -149,7 +150,7 @@ class ViewController: UIViewController {
 
         DispatchQueue.main.async {
           if let response = String(bytes: data, encoding: .utf8) {
-            self.statusTextView.insertText("Server: \(response)\n")
+            self.addToHistory("Server: \(response)")
           }
         }
       }
@@ -167,6 +168,12 @@ class ViewController: UIViewController {
     set(portTextField.text ?? "", forKey: "port")
   }
 
+  private func addToHistory(_ message: String) {
+    historyTextView.insertText("\(message)\n")
+    let bottom = NSMakeRange(historyTextView.text.count, 1)
+    historyTextView.scrollRangeToVisible(bottom)
+  }
+  
   private func set(_ value: String, forKey: String) {
     UserDefaults.standard.setValue(value, forKey: forKey)
   }
